@@ -12,7 +12,8 @@ function handleFormSubmit() {
     
 } 
 
-function emailValidation() {
+//function for email 
+function emailValidation(email) {
     
 }
 
