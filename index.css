@@ -1,1 +1,40 @@
+/* Basic styling for the Fanatics page */
+body {
+    background-color: #f8f9fa; /* light gray background */
+    text-align: center;
+    font-family: Arial, sans-serif;
+    padding: 30px;
+}
 
+/* Title styling */
+.title {
+    color: #0d6efd; /* Bootstrap primary blue */
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+/* Make sure images are nicely displayed */
+.image-container img {
+    width: 250px;
+    height: auto;
+    border-radius: 8px;
+    border: 2px solid #dee2e6;
+}
+
+/* Button area */
+.button-container {
+    margin-top: 25px;
+}
+
+/* Use Bootstrap’s basic button style, but add a custom touch */
+.signup-button {
+    background-color: #0d6efd;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.signup-button:hover {
+    background-color: #0b5ed7; /* darker shade on hover */
+}
