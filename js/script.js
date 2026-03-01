@@ -44,8 +44,6 @@ function processUserData(name, age, email, address, phone) {
     users.push(user);
 
     localStorage.setItem("users", JSON.stringify(users));
-
-    renderUserList(users);
 }
 
 function renderUserList(users) {
