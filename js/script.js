@@ -25,7 +25,7 @@ function handleFormSubmit() {
         return;
     }
 
-    //placeholder
+    //if validation passes save to JSON
     processUserData(name, age, email, address, phone);
 } 
 
@@ -37,20 +37,6 @@ function emailValidation(email) {
 }
 
 //creating JSON object + saving locally + rendering user list
-function processUserData(name, age, email, address, phone) {
-    document.getElementById("memberForm").addEventListener("submit", function(event) {
-    event.preventDefault();
-    handleFormSubmit();
-});
-
-function handleFormSubmit() {
-    processUserData(name, age, email, address, phone);
-}
-
-function emailValidation(email) {
-const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-return regex.test(email);
-
 function processUserData(name, age, email, address, phone) {
     const user = { name, age, email, address, phone };
 
@@ -64,15 +50,12 @@ function processUserData(name, age, email, address, phone) {
 
 function renderUserList(users) {
     const list = document.getElementById("userList");
+    if (!list) return; //prevents error if element doesn't exist
     list.innerHTML = "";
 
     users.forEach(user => {
         const li = document.createElement("li");
-        li.textContent = `${user.name} (${user.email}) – Age: ${user.age}`;
+        li.textContent = `${user.name} (${user.email}) - Age: ${user.age}`;
         list.appendChild(li);
     });
-}
-
-
-}
 }
