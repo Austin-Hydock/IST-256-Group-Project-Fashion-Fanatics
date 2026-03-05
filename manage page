@@ -10,8 +10,7 @@
 <body>
     <hr>
 
-
-    <h2>Add / Update Clothing Item</h2>
+    <h2> Add / Update Clothing Item</h2>
 
     <form id="productForm">
 
@@ -32,8 +31,6 @@
 <label for="price">Price (required)</label><br>
 <input type="number" id="price" placeholder="Not sold on webpage" required><br><br>
 
-
-
 <label for="extra">Additional Information (optional)</label><br>
 <input type="text" id="extra"><br><br>
         <button type="submit">Save Product</button>
@@ -42,7 +39,6 @@
 
     <hr>
 
-    
     <h2>Search Product</h2>
 
     <label for="searchInput">Search by Product ID:</label><br>
