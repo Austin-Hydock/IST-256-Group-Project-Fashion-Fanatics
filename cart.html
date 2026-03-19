@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shopping Cart</title>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">Home</a> |
+        
+    </nav>
+
+    <h1>Shopping Cart Page</h1>
+
+    
+    <h2>Search Products</h2>
+    <input type="text" id="searchInput" placeholder="Search products">
+    <button id="searchBtn">Search</button>
+
+    <h2>Add Product</h2>
+    <form id="productForm">
+
+        <label>Product ID:</label><br>
+        <input type="text" id="productId" required><br><br>
+
+        <label>Description:</label><br>
+        <input type="text" id="description" required><br><br>
+
+        <label>Category:</label><br>
+        <input type="text" id="category" required><br><br>
+
+        <label>Unit of Measure:</label><br>
+        <input type="text" id="unit" required><br><br>
+
+        <label>Price:</label><br>
+        <input type="number" id="price" step="0.01" required><br><br>
+
+
+    </form>
+
+   
+    <h2>Cart Items</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Product ID</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Unit</th>
+                <th>Price</th>
+                <th>Remove</th>
+            </tr>
+        </thead>
+        <tbody id="cartTable">
+            
+        </tbody>
+    </table>
+
+
+    <br>
+    <button id="sendDataBtn">Send Cart Data to API</button>
+
+</body>
+</html>
