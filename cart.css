@@ -1,1 +1,164 @@
+/* Global layout */
+body {
+    background-color: #f8fafc;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+}
 
+header {
+    background: linear-gradient(135deg, #0d6efd, #6610f2);
+    color: #ffffff;
+    padding: 1.5rem 0;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+header h1 {
+    font-size: 1.9rem;
+    margin: 0;
+}
+
+.navbar-brand {
+    font-weight: 600;
+    letter-spacing: 0.03em;
+}
+
+/* Main container */
+.cart-wrapper {
+    max-width: 1200px;
+    margin: 0 auto 2rem auto;
+}
+
+/* Card styling */
+.panel-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #0d6efd;
+}
+
+.card {
+    border-radius: 0.5rem;
+    border: 1px solid #e2e8f0;
+}
+
+.card-header {
+    background-color: #f1f5f9;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+/* Form styling */
+.form-label {
+    font-weight: 500;
+}
+
+.required::after {
+    content: " *";
+    color: #dc3545;
+}
+
+.form-control:focus,
+.form-select:focus {
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+    border-color: #0d6efd;
+}
+
+.is-invalid {
+    border-color: #dc3545 !important;
+}
+
+.is-valid {
+    border-color: #198754 !important;
+}
+
+.validation-message {
+    font-size: 0.9rem;
+}
+
+/* Search bar */
+.search-bar {
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    padding: 1rem 1.25rem;
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.08);
+}
+
+.search-bar input {
+    border-radius: 2rem;
+}
+
+/* Cart table */
+.table thead th {
+    background-color: #0d6efd;
+    color: #ffffff;
+    border-color: #0d6efd;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #eff6ff;
+}
+
+.cart-summary {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* Buttons */
+.btn-pill {
+    border-radius: 2rem;
+    padding-inline: 1.25rem;
+}
+
+.btn-outline-light:hover {
+    color: #0d6efd;
+}
+
+.btn-icon {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+/* JSON output */
+#jsonOutputContainer {
+    background-color: #020617;
+    color: #e5e7eb;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    font-family: "SF Mono", ui-monospace, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
+    font-size: 0.9rem;
+    max-height: 260px;
+    overflow-y: auto;
+    border: 1px solid #1f2937;
+}
+
+#jsonOutputContainer pre {
+    margin: 0;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+/* Footer */
+footer {
+    border-top: 1px solid #e5e7eb;
+    padding: 1rem 0;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #6b7280;
+    background-color: #ffffff;
+}
+
+/* Responsive tweaks */
+@media (max-width: 767.98px) {
+    header h1 {
+        font-size: 1.4rem;
+    }
+
+    .cart-wrapper {
+        padding-inline: 1rem;
+    }
+
+    .table-responsive {
+        font-size: 0.9rem;
+    }
+}
