@@ -26,6 +26,7 @@
 
 <label for="productID">Product ID (required)</label><br>
 <input type="number" id="productID" required><br><br>
+
 <label for="title">Product Title (required)</label><br>
 <input type="text" id="title" required><br><br>
 
@@ -37,9 +38,6 @@
 
 <label for="price">Price (required)</label><br>
 <input type="number" id="price" placeholder="Not sold on webpage" required><br><br>
-
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script src="manage-products.js"></script>
 
 <label for="extra">Additional Information (optional)</label><br>
 <input type="text" id="extra"><br><br>
@@ -76,6 +74,9 @@
             
         </tbody>
     </table>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="content_mngr.js"></script>
 
 </body>
 </html>
