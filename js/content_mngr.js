@@ -11,7 +11,7 @@ function renderTable(dataArray) {
     dataArray.forEach(function (item) {
         var row = document.createElement("tr");
         row.innerHTML =
-            "<td><img src '" + (item.image || "") + "' width= '50'></td> +
+            "<td><img src '" + (item.image || "") + "' width= '50'></td>" +
             "<td>" + item.id + "</td>" +
             "<td>" + item.description + "</td>" +
             "<td>" + item.unit + "</td>" +
@@ -62,8 +62,8 @@ function getFormData() {
         category: document.getElementById("category").value.trim(),
         unit: document.getElementById("type").value.trim(),
         price: parseFloat(document.getElementById("price").value.trim()),
-        weight: document.getElementById("extra").value.trim()
-        image: document.getElementById("imageURL).value.trim()
+        weight: document.getElementById("extra").value.trim(),
+        image: document.getElementById("imageURL").value.trim()
     };
 }
 
