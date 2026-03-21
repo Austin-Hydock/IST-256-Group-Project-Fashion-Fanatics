@@ -18,7 +18,7 @@ function renderTable(dataArray) {
             "<td>" + item.category + "</td>" +
             "<td>$" + Number(item.price).toFixed(2) + "</td>" +
             "<td>" + (item.weight || "") + "</td>" +
-            "<td></td>;
+            "<td></td>";
         row.addEventListener("click", function () {
             loadItemIntoForm(item.id);
         });
