@@ -11,12 +11,14 @@ function renderTable(dataArray) {
     dataArray.forEach(function (item) {
         var row = document.createElement("tr");
         row.innerHTML =
+            "<td><img src '" + (item.image || "") + "' width= '50'></td> +
             "<td>" + item.id + "</td>" +
             "<td>" + item.description + "</td>" +
-            "<td>" + item.category + "</td>" +
             "<td>" + item.unit + "</td>" +
+            "<td>" + item.category + "</td>" +
             "<td>$" + Number(item.price).toFixed(2) + "</td>" +
-            "<td>" + (item.weight || "") + "</td>";
+            "<td>" + (item.weight || "") + "</td>" +
+            "<td></td>;
         row.addEventListener("click", function () {
             loadItemIntoForm(item.id);
         });
@@ -55,12 +57,13 @@ function validateForm() {
 
 function getFormData() {
     return {
-        id: document.getElementById("productId").value.trim(),
-        description: document.getElementById("productDescription").value.trim(),
-        category: document.getElementById("productCategory").value.trim(),
-        unit: document.getElementById("productUnit").value.trim(),
-        price: parseFloat(document.getElementById("productPrice").value.trim()),
-        weight: document.getElementById("productWeight").value.trim()
+        id: document.getElementById("productID").value.trim(),
+        description: document.getElementById("title").value.trim(),
+        category: document.getElementById("category").value.trim(),
+        unit: document.getElementById("type").value.trim(),
+        price: parseFloat(document.getElementById("price").value.trim()),
+        weight: document.getElementById("extra").value.trim()
+        image: document.getElementById("imageURL).value.trim()
     };
 }
 
