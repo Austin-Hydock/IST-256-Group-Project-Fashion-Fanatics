@@ -1,5 +1,5 @@
 // temporary products, repalce when doing JSON 
-let products = {
+let products = [
   { id: "P1", description: "Fashion Fanatics Magazine", category: "Magazine", unit: "Each", price: 12 },
   { id: "P2", description: "Fashion Fanatics Poster", category: "Merch", unit: "Each", price: 8 }
 ];
@@ -8,10 +8,10 @@ let products = {
 let cart = [];
 
 //form validation
-document.getElementById("ProductForm").addEventListener("Submit", function(e) {
+document.getElementById("productForm").addEventListener("submit", function(e) {
   e.preventDefault();
 
-  const id = document.getElementById("ProductId").value.trim();
+  const id = document.getElementById("productId").value.trim();
   const desc = document.getElementById("description").value.trim();
   const cat = document.getElementById("category").value.trim();
   const unit = document.getElementById("unit").value.trim();
@@ -45,8 +45,8 @@ function displayResults(data) {
   let table = $("#cartTable");
   table.empty();
 
-  data.forEeach(p => {
-    let row = '
+  data.forEach(p => {
+    let row = `
       <tr>
         <td>${p.id}</td>
         <td>${p.description}</td>
@@ -55,7 +55,7 @@ function displayResults(data) {
         <td>${p.price}</td>
         <td><button onclick="addToCart('${p.id}')">Add</button></td>
     </tr>
-  ';
+  `;
     table.append(row);
 });
 }
@@ -76,16 +76,16 @@ function renderCart() {
   table.innerHTML = "";
 
   cart.forEach((item, index) => {
-    let row = '
+    let row = `
       <tr>
         <td>${item.id}</td>
-        <td>$item.description}</td>
-        <td>$item.category}</td>
-        <td>$item.unit}</td>
-        <td>$item.price}</td>
+        <td>${item.description}</td>
+        <td>${item.category}</td>
+        <td>${item.unit}</td>
+        <td>${item.price}</td>
         <td><button onclick="removeFromCart(${index})">Remove</button></td>
                </tr>
-               ';
+               `;
     table.innerHTML += row;
 });
 }
@@ -111,7 +111,7 @@ document.getElementById("sendDataBtn").addEventListener("click", function() {
     data: JSON.stringify(cart),
 
     success: function(response) {
-      console.log("Server response:", response):
+      console.log("Server response:", response);
       alert("Cart sent successfully!");
     },
 
