@@ -37,6 +37,17 @@ document.getElementById("productForm").addEventListener("submit", function (e) {
   this.reset();
 });
 
+  // save JSON
+  localStorage.setItem("products", JSON.stringify(products));
+  console.log("JSON Data:", products);
+
+  alert("Validation successful! Product added.");
+  this.reset();
+
+  // refresh search results
+  displayResults(products);
+});
+
 // jQuery search button click
 $("#searchBtn").on("click", function () {
   let value = $("#searchInput").val().toLowerCase();
