@@ -42,7 +42,7 @@ $("#searchBtn").on("click", function() {
 
 //displaying search results
 function displayResults(data) {
-  let table = $("#cartTable");
+  let table = $("#searchResultsTable");
   table.empty();
 
   data.forEach(p => {
