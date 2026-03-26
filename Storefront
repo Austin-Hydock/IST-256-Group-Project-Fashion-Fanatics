@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fanatics Storefront</title>
+</head>
+<body>
+
+    
+    <nav>
+        <a href="index.html">Home</a> |
+        <a href="cart.html">Shopping Cart</a> |
+        <a href="MangePage html.html">Manage Products</a>
+    </nav>
+
+    <h1>Fanatics</h1>
+
+    <hr>
+
+    <h2>Available Products</h2>
+
+    <!-- Product Container -->
+    <div id="productContainer">
+
+      
+        <div>
+            <img src="https://collectorscage.com/cdn/shop/collections/christian-dior-collectors-cage.jpg?v=1720440559" width="200">
+            <p>Christian Dior </p>
+            <p>$3,450</p>
+        </div>
+
+        <br>
+
+       
+        <div>
+            <img src="https://www.mrporter.com/variants/images/46376663162996683/in/w2000_q80.jpg" width="200">
+            <p>Polo Bear Cashmere Sweater</p>
+            <p>$1,895</p>
+        </div>
+
+        <br>
+
+       
+        <div>
+            <img src="https://image.goat.com/transform/v1/attachments/product_template_additional_pictures/images/082/096/144/original/1096862_01.jpg.jpeg?action=crop&width=750" width="200">
+            <p>Chrome Hearts Horseshoe Logo Crewneck Sweatshirt</p>
+            <p>$2,587.00</p>
+        </div>
+
+        <br>
+
+       
+        <div>
+            <img src="https://www.fashionphile.com/cdn/shop/files/35caa74a47eb86af5d0d176490ed600f.jpg?v=1773156989" width="200">
+            <p>Goyardine Artois PM Green</p>
+            <p>$3,495</p>
+        </div>
+
+    </div>
+
+    
+
+</body>
+</html>
