@@ -26,7 +26,10 @@
         <div>
             <img src="https://collectorscage.com/cdn/shop/collections/christian-dior-collectors-cage.jpg?v=1720440559" width="200">
             <p>Christian Dior </p>
-            <p>$3,450</p>
+            <p> Price: $3,450</p>
+            <p>A luxury designer handbag known for its elegant pattern and premium craftsmanship. Perfect for adding a high-end fashion statement to any outfit. </p>
+            
+
         </div>
 
         <br>
@@ -35,7 +38,10 @@
         <div>
             <img src="https://www.mrporter.com/variants/images/46376663162996683/in/w2000_q80.jpg" width="200">
             <p>Polo Bear Cashmere Sweater</p>
-            <p>$1,895</p>
+             <p>Price: $1,895</p>
+    
+            <p>A soft, high-quality cashmere sweater featuring the iconic Polo Bear design. Combines comfort and classic style for everyday wear.</p>
+
         </div>
 
         <br>
@@ -44,7 +50,10 @@
         <div>
             <img src="https://image.goat.com/transform/v1/attachments/product_template_additional_pictures/images/082/096/144/original/1096862_01.jpg.jpeg?action=crop&width=750" width="200">
             <p>Chrome Hearts Horseshoe Logo Crewneck Sweatshirt</p>
-            <p>$2,587.00</p>
+            <p>Price: $2,587.00</p>
+            <p>A bold streetwear piece with the signature Chrome Hearts horseshoe logo. Designed for both comfort and standout fashion appeal.</p>
+            
+    
         </div>
 
         <br>
@@ -53,12 +62,18 @@
         <div>
             <img src="https://www.fashionphile.com/cdn/shop/files/35caa74a47eb86af5d0d176490ed600f.jpg?v=1773156989" width="200">
             <p>Goyardine Artois PM Green</p>
-            <p>$3,495</p>
+              <p> Price: $3,495</p>
+            <p>A stylish and durable tote bag with Goyard’s signature pattern. Ideal for daily use while maintaining a luxury aesthetic.
+</p>
+          
         </div>
 
     </div>
 
     
+
+</body>
+</html>
 
 </body>
 </html>
