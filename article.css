@@ -13,12 +13,14 @@
     --font-body: 'Helvetica Neue', Arial, sans-serif;
 }
 
+/* Reset */
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+/* Body */
 body {
     background-color: var(--bg-color);
     color: var(--text-dark);
@@ -27,11 +29,11 @@ body {
     font-size: 15px;
     line-height: 1.7;
     min-height: 100vh;
-    padding-bottom: 50px;
 }
 
+/* Navbar */
 nav {
-    background-color: var(--text-dark);
+    background-color: var(--bg-color);
     padding: 14px 40px;
     display: flex;
     align-items: center;
@@ -43,14 +45,14 @@ nav {
 }
 
 nav a {
-    color: #c8b98a;
+    color: var(--text-dark);
     text-decoration: none;
     transition: color 0.2s ease;
     padding: 2px 0;
 }
 
 nav a:hover {
-    color: #ffffff;
+    color: var(--accent);
 }
 
 /* Main Heading */
@@ -72,21 +74,34 @@ hr {
     margin: 0 auto 40px;
 }
 
-h3 {
+/* Form Heading */
+h2 {
     font-family: var(--font-display);
-    font-weight: 600;
+    font-size: 1.4rem;
+    font-weight: 400;
     text-align: center;
-    margin-bottom: 24px;
+    letter-spacing: 0.12em;
+    color: var(--text-mid);
+    text-transform: uppercase;
+    margin-bottom: 36px;
 }
 
-/* Submission Form Container */
-.submission-form {
+/* Form container matches product cards */
+#articleFormContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    justify-content: center;
+    padding: 0 32px 64px;
     max-width: 600px;
     margin: 0 auto;
+}
+
+#articleFormContainer > form {
     background-color: var(--card-bg);
-    padding: 24px;
-    border-radius: 2px;
     border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 24px;
     box-shadow: var(--shadow);
     display: flex;
     flex-direction: column;
@@ -94,40 +109,48 @@ h3 {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.submission-form:hover {
+#articleFormContainer > form:hover {
     transform: translateY(-6px);
     box-shadow: var(--shadow-hover);
 }
 
-.submission-form label {
+#articleFormContainer label {
     font-weight: 700;
     color: var(--text-dark);
     margin-bottom: 6px;
 }
 
-.submission-form input,
-.submission-form select,
-.submission-form textarea {
+#articleFormContainer input,
+#articleFormContainer select,
+#articleFormContainer textarea,
+#articleFormContainer button {
+    font-family: var(--font-body);
+}
+
+/* Inputs */
+#articleFormContainer input,
+#articleFormContainer select,
+#articleFormContainer textarea {
     width: 100%;
     padding: 10px;
     border: 1px solid var(--border);
     border-radius: 2px;
     font-size: 14px;
-    font-family: var(--font-body);
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.submission-form input:focus,
-.submission-form select:focus,
-.submission-form textarea:focus {
+#articleFormContainer input:focus,
+#articleFormContainer select:focus,
+#articleFormContainer textarea:focus {
     border-color: var(--accent);
     box-shadow: 0 0 4px var(--accent);
     outline: none;
 }
 
-.submission-form button {
-    background-color: var(--text-dark);
-    color: #fff;
+/* Submit button */
+#articleFormContainer button {
+    background-color: var(--accent);
+    color: var(--card-bg);
     font-weight: 700;
     border: none;
     padding: 12px;
@@ -137,15 +160,18 @@ h3 {
     letter-spacing: 0.08em;
 }
 
-.submission-form button:hover {
+#articleFormContainer button:hover {
     background-color: var(--accent-hover);
 }
 
-.submission-form .text-danger {
-    font-size: 13px;
-    color: red;
+/* Paragraphs (instructions, info) */
+#articleFormContainer p {
+    font-size: 13.5px;
+    color: var(--text-mid);
+    line-height: 1.6;
 }
 
+/* Responsive */
 @media (max-width: 640px) {
     nav {
         padding: 12px 20px;
@@ -158,8 +184,7 @@ h3 {
         padding: 32px 16px 8px;
     }
 
-    .submission-form {
-        width: 90%;
-        padding: 16px;
+    #articleFormContainer {
+        padding: 0 16px 48px;
     }
 }
