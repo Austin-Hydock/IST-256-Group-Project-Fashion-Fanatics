@@ -55,6 +55,11 @@ $(document).ready(function() {
             .html("&#10004; Article submitted successfully!")
             .show();
         $("#finalForm")[0].reset();
+
+                setTimeout(() => {
+        $("#errorMsg").fadeOut();
+    }, 5000);
+                
     },
     error: function() {
         alert("Error submitting article.");
