@@ -53,6 +53,7 @@ $(document).ready(function() {
             .removeClass("text-danger")
             .addClass("text-success fw-bold") 
             .html("&#10004; Article submitted successfully!");
+            .show();
         $("#finalForm")[0].reset();
     },
     error: function() {
