@@ -3,7 +3,9 @@ $(document).ready(function() {
     $("#finalForm").on("submit", function(e) {
         e.preventDefault();
 
-        //collect form values
+        $("#errorMsg").text(""); // clear previous errors
+
+        // Collect form values
         const title = $("#title").val().trim();
         const author = $("#author").val().trim();
         const pubDate = $("#pubDate").val();
@@ -12,18 +14,18 @@ $(document).ready(function() {
         const notes = $("#notes").val().trim();
         const channels = $("input[name='channels']:checked").map(function(){ return $(this).val(); }).get();
 
-        //validation
+        // Validation
         if (!title || !author || !pubDate || !reviewStatus || !category) {
-            alert("Please fill in all required fields.");
+            $("#errorMsg").text("Please fill in all required fields.");
             return;
         }
 
         if (channels.length === 0) {
-            alert("Please select at least one distribution channel.");
+            $("#errorMsg").text("Please select at least one distribution channel.");
             return;
         }
 
-        //build JSON object
+        // Build JSON object
         const articleData = {
             title: title,
             author: author,
@@ -36,10 +38,10 @@ $(document).ready(function() {
 
         console.log("Generated JSON:", articleData);
 
-        //saving locally
+        // Save locally
         localStorage.setItem("finalizedArticle", JSON.stringify(articleData));
 
-        //AJAX POST to mock API
+        // AJAX POST to mock API
         $.ajax({
             url: "https://jsonplaceholder.typicode.com/posts",
             method: "POST",
@@ -47,11 +49,11 @@ $(document).ready(function() {
             data: JSON.stringify(articleData),
             success: function(response) {
                 console.log("Server Response:", response);
-                alert("Article submitted successfully!");
+                $("#errorMsg").removeClass("text-danger").addClass("text-success").text("Article submitted successfully!");
                 $("#finalForm")[0].reset();
             },
             error: function() {
-                alert("Error submitting article.");
+                $("#errorMsg").text("Error submitting article.");
             }
         });
 
