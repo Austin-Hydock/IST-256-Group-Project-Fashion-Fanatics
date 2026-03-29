@@ -48,13 +48,16 @@ $(document).ready(function() {
             contentType: "application/json",
             data: JSON.stringify(articleData),
             success: function(response) {
-                console.log("Server Response:", response);
-                $("#errorMsg").removeClass("text-danger").addClass("text-success").text("Article submitted successfully!");
-                $("#finalForm")[0].reset();
-            },
-            error: function() {
-                $("#errorMsg").text("Error submitting article.");
-            }
+        console.log("Server Response:", response);
+        $("#errorMsg")
+            .removeClass("text-danger")
+            .addClass("text-success fw-bold") 
+            .html("&#10004; Article submitted successfully!");
+        $("#finalForm")[0].reset();
+    },
+    error: function() {
+        alert("Error submitting article.");
+    }
         });
 
     });
