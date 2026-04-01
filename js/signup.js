@@ -45,7 +45,8 @@ function processUserData(name, age, email, address, phone) {
 
     localStorage.setItem("users", JSON.stringify(users));
 
-    renderUserList(users);
+    document.getElementById("memberForm").reset();
+
 }
 
 function renderUserList(users) {
