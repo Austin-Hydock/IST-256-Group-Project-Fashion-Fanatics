@@ -13,6 +13,7 @@
     --font-body: 'Helvetica Neue', Arial, sans-serif;
 }
 
+/* ---------- GLOBAL ---------- */
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -29,6 +30,7 @@ body {
     min-height: 100vh;
 }
 
+/* ---------- NAVBAR ---------- */
 nav {
     background-color: #ffffff;
     padding: 14px 40px;
@@ -93,7 +95,7 @@ hr {
     margin: 0 auto 40px;
 }
 
-
+/* ---------- FORM ---------- */
 .container {
     background-color: var(--card-bg);
     border-radius: 10px;
@@ -137,7 +139,7 @@ hr {
     background-color: var(--accent-hover);
 }
 
-
+/* ---------- SUCCESS / ERROR MESSAGE ---------- */
 #errorMsg {
     font-size: 0.95rem;
     margin-top: 10px;
@@ -145,7 +147,7 @@ hr {
     font-weight: bold;
 }
 
-
+/* ---------- CARDS / PRODUCT GRID (if reused) ---------- */
 #productContainer {
     display: flex;
     flex-wrap: wrap;
@@ -189,7 +191,7 @@ hr {
     filter: brightness(1.02);
 }
 
-
+/* ---------- RESPONSIVE ---------- */
 @media (max-width: 640px) {
     nav {
         padding: 12px 20px;
