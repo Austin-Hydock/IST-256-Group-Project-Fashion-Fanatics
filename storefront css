@@ -1,25 +1,26 @@
+/* ---------- ROOT VARIABLES ---------- */
 :root {
-    --bg-color: #f9f6f1;
+    --bg-color: #f5f3ef;        /* soft beige background */
     --text-dark: #1a1a1a;
     --text-mid: #4a4a4a;
     --text-light: #888;
-    --accent: #b89a5a;
-    --accent-hover: #9a7e3f;
+    --accent: #6a7fdb;          /* calm royal blue for links/buttons */
+    --accent-hover: #5261c2;
     --card-bg: #ffffff;
     --border: #e0d8cc;
-    --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    --shadow-hover: 0 8px 32px rgba(0, 0, 0, 0.14);
+    --shadow: 0 4px 20px rgba(0,0,0,0.08);
+    --shadow-hover: 0 8px 32px rgba(0,0,0,0.14);
     --font-display: Georgia, 'Times New Roman', serif;
     --font-body: 'Helvetica Neue', Arial, sans-serif;
 }
- 
 
+/* ---------- GLOBAL ---------- */
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
- 
+
 body {
     background-color: var(--bg-color);
     color: var(--text-dark);
@@ -29,10 +30,10 @@ body {
     line-height: 1.7;
     min-height: 100vh;
 }
- 
 
+/* ---------- NAVBAR ---------- */
 nav {
-    background-color: var(--text-dark);
+    background-color: #ffffff;
     padding: 14px 40px;
     display: flex;
     align-items: center;
@@ -41,25 +42,31 @@ nav {
     font-size: 12px;
     font-weight: 700;
     text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
 }
- 
-nav a {
-    color: #c8b98a;
-    text-decoration: none;
-    transition: color 0.2s ease;
-    padding: 2px 0;
-}
- 
-nav a:hover {
-    color: #ffffff;
-}
- 
 
-nav {
-    /* pipe chars styled via color blending into background */
+nav a {
+    color: var(--accent);
+    text-decoration: none;
+    margin: 0 6px;
+    padding-bottom: 2px;
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s ease;
 }
- 
-/* ---- Main Heading ---- */
+
+nav a:hover {
+    color: var(--accent-hover);
+    border-bottom: 1px solid var(--accent-hover);
+}
+
+/* pipe separators for links */
+nav a:not(:last-child)::after {
+    content: "|";
+    color: var(--text-light);
+    margin-left: 6px;
+}
+
+/* ---------- HEADINGS ---------- */
 h1 {
     font-family: var(--font-display);
     font-size: clamp(2.8rem, 6vw, 5rem);
@@ -70,14 +77,6 @@ h1 {
     color: var(--text-dark);
     padding: 48px 20px 8px;
 }
- 
-hr {
-    border: none;
-    border-top: 1px solid var(--accent);
-    width: 80px;
-    margin: 0 auto 40px;
-}
- 
 
 h2 {
     font-family: var(--font-display);
@@ -89,8 +88,67 @@ h2 {
     text-transform: uppercase;
     margin-bottom: 36px;
 }
- 
 
+hr {
+    border: none;
+    border-top: 1px solid var(--accent);
+    width: 80px;
+    margin: 0 auto 40px;
+}
+
+/* ---------- FORM ---------- */
+.container {
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    padding: 2rem;
+    max-width: 500px;
+    margin: 0 auto 50px;
+}
+
+.form-label {
+    font-size: 0.9rem;
+    color: var(--text-mid);
+    margin-bottom: 4px;
+}
+
+.form-control {
+    border: none;
+    border-bottom: 2px solid #ccc;
+    border-radius: 0;
+    padding: 10px;
+    margin-bottom: 16px;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-bottom: 2px solid var(--accent);
+    box-shadow: none;
+}
+
+.signup-button, .btn-primary {
+    background-color: var(--accent);
+    color: #fff;
+    padding: 12px 25px;
+    border: none;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.signup-button:hover, .btn-primary:hover {
+    background-color: var(--accent-hover);
+}
+
+/* ---------- SUCCESS / ERROR MESSAGE ---------- */
+#errorMsg {
+    font-size: 0.95rem;
+    margin-top: 10px;
+    color: var(--accent);
+    font-weight: bold;
+}
+
+/* ---------- CARDS / PRODUCT GRID (if reused) ---------- */
 #productContainer {
     display: flex;
     flex-wrap: wrap;
@@ -100,7 +158,6 @@ h2 {
     max-width: 1200px;
     margin: 0 auto;
 }
- 
 
 #productContainer > div {
     background-color: var(--card-bg);
@@ -114,12 +171,11 @@ h2 {
     flex-direction: column;
     align-items: flex-start;
 }
- 
+
 #productContainer > div:hover {
     transform: translateY(-6px);
     box-shadow: var(--shadow-hover);
 }
- 
 
 #productContainer img {
     width: 100%;
@@ -131,71 +187,29 @@ h2 {
     filter: brightness(0.97);
     transition: filter 0.3s ease;
 }
- 
+
 #productContainer > div:hover img {
     filter: brightness(1.02);
 }
- 
 
-#productContainer p {
-    color: var(--text-mid);
-    font-size: 13.5px;
-    margin-bottom: 6px;
-    line-height: 1.6;
-}
- 
-
-#productContainer p:nth-of-type(1) {
-    font-family: var(--font-display);
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--text-dark);
-    letter-spacing: 0.02em;
-    margin-bottom: 4px;
-}
- 
-
-#productContainer p:nth-of-type(2) {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--accent);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-}
- 
-
-#productContainer p:nth-of-type(3) {
-    font-size: 13px;
-    font-weight: 300;
-    color: var(--text-light);
-    border-top: 1px solid var(--border);
-    padding-top: 10px;
-    margin-top: 4px;
-}
- 
-#productContainer br {
-    display: none;
-}
- 
-
+/* ---------- RESPONSIVE ---------- */
 @media (max-width: 640px) {
     nav {
         padding: 12px 20px;
         flex-wrap: wrap;
         gap: 6px;
     }
- 
+
     h1 {
         font-size: 2.2rem;
         padding: 32px 16px 8px;
     }
- 
+
     #productContainer {
         gap: 20px;
         padding: 0 16px 48px;
     }
- 
+
     #productContainer > div {
         width: 100%;
         max-width: 360px;
