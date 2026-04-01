@@ -47,6 +47,16 @@ function processUserData(name, age, email, address, phone) {
 
     document.getElementById("memberForm").reset();
 
+    $("#errorMsg")
+    .removeClass("text-danger")
+    .addClass("text-success fw-bold")
+    .html("&#10004; Successfully signed up!")
+    .fadeIn();
+
+setTimeout(() => {
+    $("#errorMsg").fadeOut();
+}, 5000);
+
 }
 
 function renderUserList(users) {
