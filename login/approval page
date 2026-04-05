@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Article Approval</title>
+    <link rel="stylesheet" href="approval.css">
 </head>
 
 <body>
@@ -70,7 +71,7 @@
                 </section>
 
                 <hr>
-<link rel="stylesheet" href="approval.css">
+
 
 </div>
 </div>
