@@ -1,0 +1,257 @@
+:root {
+    --bg-color: #f9f6f1;
+    --text-dark: #1a1a1a;
+    --text-mid: #4a4a4a;
+    --text-light: #888;
+    --accent: #b89a5a;
+    --accent-hover: #9a7e3f;
+    --card-bg: #ffffff;
+    --border: #e0d8cc;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    --font-display: Georgia, 'Times New Roman', serif;
+    --font-body: 'Helvetica Neue', Arial, sans-serif;
+}
+ 
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+ 
+body {
+    background-color: var(--bg-color);
+    color: var(--text-dark);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.7;
+    min-height: 100vh;
+}
+ 
+
+body > div > p {
+    background-color: var(--text-dark);
+    padding: 14px 40px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0;
+}
+ 
+body > div > p a {
+    color: #c8b98a;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+ 
+body > div > p a:hover {
+    color: #ffffff;
+}
+ 
+
+h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3.6rem);
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dark);
+    padding: 48px 20px 16px;
+}
+ 
+h1::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 1px;
+    background-color: var(--accent);
+    margin: 12px auto 0;
+}
+ 
+
+h2 {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-mid);
+    margin-bottom: 24px;
+}
+ 
+h3 {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 12px;
+}
+ 
+h4 {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+}
+ 
+
+#loginSection {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    max-width: 400px;
+    margin: 36px auto;
+    padding: 32px;
+}
+ 
+#loginSection p {
+    color: var(--text-light);
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+ 
+#loginSection label {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-mid);
+    margin-bottom: 4px;
+    margin-top: 14px;
+}
+ 
+#loginSection input {
+    width: 100%;
+    padding: 9px 12px;
+    border: 1px solid var(--border);
+    background-color: var(--bg-color);
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--text-dark);
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+ 
+#loginSection input:focus {
+    border-color: var(--accent);
+}
+ 
+/* ---- Admin Section ---- */
+#adminSection {
+    max-width: 800px;
+    margin: 36px auto;
+    padding: 0 24px 64px;
+}
+ 
+
+#notAdminMessage {
+    background-color: #fff4f4;
+    border: 1px solid #f0c0c0;
+    padding: 14px 18px;
+    margin-bottom: 24px;
+    font-size: 14px;
+    color: #a03030;
+}
+ 
+
+#articlesSection h3 {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 10px;
+    margin-bottom: 24px;
+}
+ 
+
+#articlesList section {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    padding: 24px;
+    margin-bottom: 24px;
+}
+ 
+#articlesList section p {
+    font-size: 14px;
+    color: var(--text-mid);
+    margin-bottom: 6px;
+}
+ 
+#articlesList section p strong {
+    color: var(--text-dark);
+    font-weight: 700;
+}
+ 
+#articlesList hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 0 0 24px;
+}
+ 
+
+button {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 9px 22px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-top: 16px;
+    margin-right: 8px;
+}
+ 
+#loginBtn {
+    background-color: var(--accent);
+    color: #ffffff;
+    width: 100%;
+    margin-top: 20px;
+}
+ 
+#loginBtn:hover {
+    background-color: var(--accent-hover);
+}
+ 
+.approve-btn {
+    background-color: var(--text-dark);
+    color: #ffffff;
+}
+ 
+.approve-btn:hover {
+    background-color: #333333;
+}
+ 
+.reject-btn {
+    background-color: var(--card-bg);
+    color: var(--text-dark);
+    border: 1px solid var(--border);
+}
+ 
+.reject-btn:hover {
+    background-color: var(--bg-color);
+}
+ 
+
+@media (max-width: 640px) {
+    body > div > p {
+        padding: 12px 20px;
+    }
+ 
+    h1 {
+        font-size: 2rem;
+        padding: 32px 16px 12px;
+    }
+ 
+    #loginSection {
+        margin: 24px 16px;
+        padding: 24px;
+    }
+ 
+    #adminSection {
+        padding: 0 16px 48px;
+    }
+}
