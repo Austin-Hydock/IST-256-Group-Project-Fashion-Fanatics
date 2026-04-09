@@ -1,0 +1,137 @@
+CREATE DATABASE IF NOT EXISTS fashion_fanatics;
+USE fashion_fanatics;
+ 
+ 
+CREATE TABLE members (
+    member_id     INT AUTO_INCREMENT PRIMARY KEY,
+    full_name     VARCHAR(100)  NOT NULL,
+    age           INT           NOT NULL,
+    email         VARCHAR(150)  NOT NULL UNIQUE,
+    address       VARCHAR(255)  NOT NULL,
+    phone         VARCHAR(20),
+    created_at    TIMESTAMP     DEFAULT CURRENT_TIMESTAMP
+);
+ 
+ 
+CREATE TABLE products (
+    product_id    INT           PRIMARY KEY,
+    title         VARCHAR(150)  NOT NULL,
+    type          VARCHAR(100)  NOT NULL,
+    category      VARCHAR(100)  NOT NULL,
+    price         DECIMAL(10,2) NOT NULL,
+    image_url     VARCHAR(500),
+    extra_info    TEXT,
+    created_at    TIMESTAMP     DEFAULT CURRENT_TIMESTAMP
+);
+ 
+ 
+CREATE TABLE cart (
+    cart_id       INT AUTO_INCREMENT PRIMARY KEY,
+    member_id     INT,
+    product_id    INT           NOT NULL,
+    description   VARCHAR(255)  NOT NULL,
+    category      VARCHAR(100)  NOT NULL,
+    unit          VARCHAR(50)   NOT NULL,
+    price         DECIMAL(10,2) NOT NULL,
+    added_at      TIMESTAMP     DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (member_id)  REFERENCES members(member_id)  ON DELETE SET NULL,
+    FOREIGN KEY (product_id) REFERENCES products(product_id) ON DELETE CASCADE
+);
+ 
+ 
+CREATE TABLE authors (
+    author_id     INT AUTO_INCREMENT PRIMARY KEY,
+    member_id     INT,                          -- optional link to a registered member
+    author_name   VARCHAR(100) NOT NULL,
+    email         VARCHAR(150),
+    FOREIGN KEY (member_id) REFERENCES members(member_id) ON DELETE SET NULL
+);
+ 
+ 
+CREATE TABLE articles (
+    article_id      INT AUTO_INCREMENT PRIMARY KEY,
+    author_id       INT           NOT NULL,
+    title           VARCHAR(200)  NOT NULL,
+    category        ENUM('Pop Culture', 'Fashion', 'Celebrity News') NOT NULL,
+    pub_date        DATE          NOT NULL,
+    review_status   ENUM(
+                        'Draft',
+                        'Submitted for Review',
+                        'Approved for Publication',
+                        'Published'
+                    ) NOT NULL DEFAULT 'Draft',
+    editorial_notes TEXT,
+    submitted_at    TIMESTAMP     DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (author_id) REFERENCES authors(author_id) ON DELETE CASCADE
+);
+ 
+ 
+CREATE TABLE article_channels (
+    channel_id    INT AUTO_INCREMENT PRIMARY KEY,
+    article_id    INT          NOT NULL,
+    channel_name  ENUM('Website', 'Print Edition', 'Social Media') NOT NULL,
+    FOREIGN KEY (article_id) REFERENCES articles(article_id) ON DELETE CASCADE
+);
+ 
+ 
+CREATE TABLE article_approvals (
+    approval_id     INT AUTO_INCREMENT PRIMARY KEY,
+    article_id      INT           NOT NULL UNIQUE,
+    reviewed_by     VARCHAR(100)  NOT NULL,          -- admin username
+    decision        ENUM('Approved', 'Rejected') NOT NULL,
+    reviewed_at     TIMESTAMP     DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (article_id) REFERENCES articles(article_id) ON DELETE CASCADE
+);
+ 
+ 
+-- Members (subscribe.html)
+INSERT INTO members (full_name, age, email, address, phone) VALUES
+    ('Jacob R',     22, 'jacob.r@email.com',   '123 Main St, New York, NY',      '555-0101'),
+    ('Aria Fontaine',25, 'aria.f@email.com',   '456 Elm Ave, Los Angeles, CA',   '555-0102'),
+    ('Marcus Webb',  30, 'marcus.w@email.com', '789 Oak Blvd, Chicago, IL',      NULL);
+ 
+-- Products (manage_page / storefront)
+INSERT INTO products (product_id, title, type, category, price, image_url, extra_info) VALUES
+    (1001, 'Christian Dior Handbag',                  'Handbag',    'Luxury Accessories', 3450.00,
+     'https://collectorscage.com/cdn/shop/collections/christian-dior-collectors-cage.jpg',
+     'Elegant pattern, premium craftsmanship'),
+    (1002, 'Polo Bear Cashmere Sweater',              'Sweater',    'Tops',               1895.00,
+     'https://www.mrporter.com/variants/images/46376663162996683/in/w2000_q80.jpg',
+     'Iconic Polo Bear design, soft cashmere'),
+    (1003, 'Chrome Hearts Horseshoe Crewneck',        'Sweatshirt', 'Streetwear',         2587.00,
+     'https://image.goat.com/transform/v1/attachments/product_template_additional_pictures/images/082/096/144/original/1096862_01.jpg.jpeg',
+     'Signature horseshoe logo'),
+    (1004, 'Goyardine Artois PM Green',               'Tote Bag',   'Luxury Accessories', 3495.00,
+     'https://www.fashionphile.com/cdn/shop/files/35caa74a47eb86af5d0d176490ed600f.jpg',
+     'Signature Goyard pattern, daily luxury');
+ 
+-- Authors
+INSERT INTO authors (member_id, author_name, email) VALUES
+    (1, 'Jacob R',      'jacob.r@email.com'),
+    (2, 'Aria Fontaine','aria.f@email.com');
+ 
+-- Articles
+INSERT INTO articles (author_id, title, category, pub_date, review_status, editorial_notes) VALUES
+    (1, 'Top 10 Streetwear Trends This Season', 'Fashion',       '2025-08-01', 'Submitted for Review', 'Focus on Gen Z appeal'),
+    (2, 'Celebrity Style Roundup: Met Gala',    'Celebrity News','2025-08-15', 'Draft',                NULL),
+    (1, 'The Rise of Quiet Luxury',             'Fashion',       '2025-09-01', 'Approved for Publication', 'Editor approved — minor edits done');
+ 
+-- Distribution channels per article
+INSERT INTO article_channels (article_id, channel_name) VALUES
+    (1, 'Website'),
+    (1, 'Social Media'),
+    (2, 'Website'),
+    (2, 'Print Edition'),
+    (3, 'Website'),
+    (3, 'Print Edition'),
+    (3, 'Social Media');
+ 
+-- Cart entries
+INSERT INTO cart (member_id, product_id, description, category, unit, price) VALUES
+    (1, 1001, 'Christian Dior Handbag',          'Luxury Accessories', 'Each', 3450.00),
+    (1, 1003, 'Chrome Hearts Horseshoe Crewneck','Streetwear',         'Each', 2587.00),
+    (2, 1002, 'Polo Bear Cashmere Sweater',       'Tops',              'Each', 1895.00);
+ 
+-- Approvals
+INSERT INTO article_approvals (article_id, reviewed_by, decision) VALUES
+    (3, 'admin', 'Approved');
