@@ -1,14 +1,13 @@
-async function loadProducts() {
-    const res = await fetch("http://localhost:3000/products");
-    const data = await res.json();
+async function loadCart() {
+    const res = await fetch("http://localhost:3000/cart");
+    const items = await res.json();
 
-    const container = document.getElementById("productList");
+    const container = document.getElementById("cartList");
     container.innerHTML = "";
 
-    data.forEach(p => {
-        container.innerHTML += `
-            <h3>${p.name}</h3>
-            <p>$${p.price}</p>
-        `;
+    items.forEach(item => {
+        container.innerHTML += `<p>${item.productId}</p>`;
     });
 }
+
+loadCart();
