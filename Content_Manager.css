@@ -1,223 +1,267 @@
 :root {
-  --bg-color: #f9f6f1;
-  --text-dark: #1a1a1a;
-  --text-mid: #4a4a4a;
-  --text-light: #888;
-  --accent: #b89a5a;
-  --accent-hover: #9a7e3f;
-  --card-bg: #ffffff;
-  --border: #e0d8cc;
-  --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  --font-display: Georgia, "Times New Roman", serif;
-  --font-body: "Helvetica Neue", Arial, sans-serif;
+    --bg-color: #f9f6f1;
+    --text-dark: #1a1a1a;
+    --text-mid: #4a4a4a;
+    --text-light: #888;
+    --accent: #b89a5a;
+    --accent-hover: #9a7e3f;
+    --card-bg: #ffffff;
+    --border: #e0d8cc;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    --font-display: Georgia, 'Times New Roman', serif;
+    --font-body: 'Helvetica Neue', Arial, sans-serif;
 }
-
+ 
+/* ---- Reset & Base ---- */
 *, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
-
+ 
 body {
-  background-color: var(--bg-color);
-  color: var(--text-dark);
-  font-family: var(--font-body);
-  font-size: 15px;
-  line-height: 1.7;
-  min-height: 100vh;
-  padding-bottom: 40px;
+    background-color: var(--bg-color);
+    color: var(--text-dark);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.7;
+    min-height: 100vh;
+    padding-bottom: 64px;
 }
-
+ 
+/* ---- Navigation ---- */
 nav {
-  background-color: var(--text-dark);
-  padding: 14px 40px;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+    background-color: var(--text-dark);
+    padding: 14px 40px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: 0.1em;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
 }
-
+ 
 nav a {
-  color: #c8b98a;
-  text-decoration: none;
-  transition: color 0.2s ease;
+    color: #c8b98a;
+    text-decoration: none;
+    transition: color 0.2s ease;
 }
-
+ 
 nav a:hover {
-  color: #ffffff;
+    color: #ffffff;
 }
-
-hr {
-  border: none;
-  border-top: 1px solid var(--border);
-  margin: 0 40px 28px;
+ 
+/* ---- Page Heading ---- */
+h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3.6rem);
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dark);
+    padding: 48px 20px 8px;
 }
-
-h2 {
-  font-family: var(--font-display);
-  font-size: 1.4rem;
-  font-weight: 400;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-mid);
-  margin: 36px 40px 24px;
-}
-
-form,
-section {
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-form {
-  background-color: var(--card-bg);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow);
-  padding: 28px 32px;
-  margin-bottom: 36px;
-}
-
-label {
-  display: block;
-  font-size: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--text-mid);
-  margin-bottom: 4px;
-  margin-top: 14px;
-}
-
-input[type="text"],
-input[type="number"] {
-  width: 100%;
-  padding: 10px 12px;
-  border: 1px solid var(--border);
-  background-color: #fcfaf7;
-  font-family: var(--font-body);
-  font-size: 14px;
-  color: var(--text-dark);
-  outline: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-input[type="text"]:focus,
-input[type="number"]:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(184, 154, 90, 0.12);
-}
-
-button {
-  font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  padding: 10px 22px;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-  margin-top: 16px;
-  margin-right: 8px;
-}
-
-button[type="submit"],
-#searchButton {
-  background-color: var(--accent);
-  color: #ffffff;
-}
-
-button[type="submit"]:hover,
-#searchButton:hover {
-  background-color: var(--accent-hover);
-}
-
-#searchInput {
-  max-width: 320px;
-}
-
-table {
-  width: calc(100% - 80px);
-  margin: 0 40px;
-  border-collapse: collapse;
-  background-color: var(--card-bg);
-  box-shadow: var(--shadow);
-  overflow: hidden;
-}
-
-th,
-td {
-  border: 1px solid var(--border);
-  padding: 12px 10px;
-  text-align: left;
-  vertical-align: top;
-  font-size: 14px;
-}
-
-th {
-  background-color: #f2ece2;
-  color: var(--text-dark);
-  font-family: var(--font-display);
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  font-size: 12px;
-}
-
-td img {
-  max-width: 70px;
-  height: auto;
-  display: block;
-}
-
-td button {
-  margin-top: 0;
-  margin-right: 6px;
-  margin-bottom: 4px;
-  padding: 8px 14px;
-}
-
-td button:first-of-type {
-  background-color: var(--text-dark);
-  color: #ffffff;
-}
-
-td button:first-of-type:hover {
-  background-color: #333333;
-}
-
-td button:last-of-type {
-  background-color: var(--card-bg);
-  color: var(--text-dark);
-  border: 1px solid var(--border);
-}
-
-td button:last-of-type:hover {
-  background-color: var(--bg-color);
-}
-
-@media (max-width: 768px) {
-  nav {
-    padding: 12px 20px;
-  }
-
-  hr {
-    margin: 0 20px 22px;
-  }
-
-  h2 {
-    margin: 28px 20px 18px;
-  }
-
-  form {
-    margin: 0 20px 28px;
-    padding: 22px 18px;
-  }
-
-  table {
-    width: calc(100% - 40px);
-    margin: 0 20px;
+ 
+h1::after {
+    content: '';
     display: block;
-    overflow-x: auto;
-  }
+    width: 80px;
+    height: 1px;
+    background-color: var(--accent);
+    margin: 12px auto 0;
+}
+ 
+/* ---- Section Headings ---- */
+h2 {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-mid);
+    margin: 36px 10% 16px;
+}
+ 
+/* ---- Page Content Margins ---- */
+body > *:not(nav):not(h1) {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+ 
+/* ---- Search Bar ---- */
+#searchInput {
+    padding: 9px 12px;
+    border: 1px solid var(--border);
+    background-color: var(--card-bg);
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--text-dark);
+    outline: none;
+    width: 260px;
+    transition: border-color 0.2s ease;
+    margin-right: 6px;
+}
+ 
+#searchInput:focus {
+    border-color: var(--accent);
+}
+ 
+#searchBtn {
+    background-color: var(--accent);
+    color: #ffffff;
+    margin-top: 0;
+}
+ 
+#searchBtn:hover {
+    background-color: var(--accent-hover);
+}
+ 
+/* ---- Add Product Form ---- */
+#productForm {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    padding: 28px 32px;
+    max-width: 500px;
+    margin-bottom: 36px;
+}
+ 
+#productForm label {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-mid);
+    margin-bottom: 4px;
+    margin-top: 14px;
+}
+ 
+#productForm input[type="text"],
+#productForm input[type="number"] {
+    width: 100%;
+    padding: 9px 12px;
+    border: 1px solid var(--border);
+    background-color: var(--bg-color);
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--text-dark);
+    outline: none;
+    transition: border-color 0.2s ease;
+    margin-bottom: 4px;
+}
+ 
+#productForm input:focus {
+    border-color: var(--accent);
+}
+ 
+/* ---- Buttons ---- */
+button {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 9px 22px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-top: 16px;
+}
+ 
+#productForm button[type="submit"] {
+    background-color: var(--text-dark);
+    color: #ffffff;
+    width: 100%;
+    margin-top: 20px;
+}
+ 
+#productForm button[type="submit"]:hover {
+    background-color: var(--accent);
+}
+ 
+#sendDataBtn {
+    background-color: var(--accent);
+    color: #ffffff;
+    margin-bottom: 30px;
+    margin-top: 16px;
+}
+ 
+#sendDataBtn:hover {
+    background-color: var(--accent-hover);
+}
+ 
+/* ---- Tables ---- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    font-size: 14px;
+    margin-bottom: 24px;
+}
+ 
+th {
+    background-color: var(--text-dark);
+    color: #c8b98a;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 12px 14px;
+    text-align: left;
+}
+ 
+td {
+    padding: 10px 14px;
+    color: var(--text-mid);
+    border-bottom: 1px solid var(--border);
+}
+ 
+tr:last-child td {
+    border-bottom: none;
+}
+ 
+tr:nth-child(even) td {
+    background-color: #faf8f4;
+}
+ 
+/* ---- Responsive ---- */
+@media (max-width: 600px) {
+    body > *:not(nav):not(h1) {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+ 
+    h2 {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+ 
+    nav {
+        padding: 12px 20px;
+    }
+ 
+    h1 {
+        font-size: 2rem;
+        padding: 32px 16px 8px;
+    }
+ 
+    #productForm {
+        width: 100%;
+        padding: 20px 16px;
+    }
+ 
+    #searchInput {
+        width: 100%;
+        margin-bottom: 8px;
+        margin-right: 0;
+    }
+ 
+    table, th, td {
+        font-size: 12px;
+    }
 }
