@@ -1,20 +1,20 @@
 const express = require("express");
 const cors = require("cors");
 const mysql = require("mysql2");
-
+ 
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use(express.static("public"));
-
-//connecting to mysql
+app.use(express.static("public")); // serves all HTML/CSS/JS from /public folder
+ 
+// ── Database connection ──────────────────────────────────────────────────────
 const db = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "root1234",
     database: "fashion_fanatics"
 });
-
+ 
 db.connect(err => {
     if (err) {
         console.error("Database connection failed:", err);
@@ -22,90 +22,210 @@ db.connect(err => {
     }
     console.log("Connected to MySQL");
 });
-
-
-//get all articles
+ 
+ 
+// ════════════════════════════════════════════════════════════════════════════
+//  ARTICLES
+// ════════════════════════════════════════════════════════════════════════════
+ 
+// GET all articles
 app.get("/articles", (req, res) => {
     db.query("SELECT * FROM articles", (err, results) => {
-        if (err) res.status(500).send(err);
-        else res.json(results);
+        if (err) return res.status(500).send(err);
+        res.json(results);
     });
 });
-
-//approve article
-app.put("/articles/:id/approve", (req, res) => {
-     db.query(
-        "UPDATE articles SET review_status='Approved for Publication' WHERE article_id=?",
-         [req.params.id],
-        (err) => {
-            if (err) res.status(500).send(err);
-            else res.send("Approved");
+ 
+// POST — submit a new article
+app.post("/articles", (req, res) => {
+    const { author_id, title, category, pub_date, review_status, editorial_notes } = req.body;
+ 
+    if (!author_id || !title || !category || !pub_date) {
+        return res.status(400).send("Missing required fields.");
+    }
+ 
+    db.query(
+        `INSERT INTO articles (author_id, title, category, pub_date, review_status, editorial_notes)
+         VALUES (?, ?, ?, ?, ?, ?)`,
+        [author_id, title, category, pub_date, review_status || "Draft", editorial_notes || null],
+        (err, result) => {
+            if (err) return res.status(500).send(err);
+            res.json({ message: "Article submitted", article_id: result.insertId });
         }
     );
 });
-
-//reject the article
+ 
+// PUT — approve an article
+app.put("/articles/:id/approve", (req, res) => {
+    db.query(
+        "UPDATE articles SET review_status='Approved for Publication' WHERE article_id=?",
+        [req.params.id],
+        (err) => {
+            if (err) return res.status(500).send(err);
+            res.send("Approved");
+        }
+    );
+});
+ 
+// PUT — reject an article (resets to Draft)
 app.put("/articles/:id/reject", (req, res) => {
     db.query(
         "UPDATE articles SET review_status='Draft' WHERE article_id=?",
         [req.params.id],
         (err) => {
-            if (err) res.status(500).send(err);
-            else res.send("Rejected");
+            if (err) return res.status(500).send(err);
+            res.send("Rejected");
         }
     );
 });
-
-//get products
+ 
+// DELETE — remove an article
+app.delete("/articles/:id", (req, res) => {
+    db.query(
+        "DELETE FROM articles WHERE article_id=?",
+        [req.params.id],
+        (err) => {
+            if (err) return res.status(500).send(err);
+            res.send("Article deleted");
+        }
+    );
+});
+ 
+ 
+// ════════════════════════════════════════════════════════════════════════════
+//  PRODUCTS
+// ════════════════════════════════════════════════════════════════════════════
+ 
+// GET all products
 app.get("/products", (req, res) => {
     db.query("SELECT * FROM products", (err, results) => {
-        if (err) res.status(500).send(err);
-        else res.json(results);
+        if (err) return res.status(500).send(err);
+        res.json(results);
     });
 });
-
-//get cart items
+ 
+// POST — add a new product
+app.post("/products", (req, res) => {
+    const { product_id, title, type, category, price, image_url, extra_info } = req.body;
+ 
+    if (!product_id || !title || !type || !category || !price) {
+        return res.status(400).send("Missing required fields.");
+    }
+ 
+    db.query(
+        `INSERT INTO products (product_id, title, type, category, price, image_url, extra_info)
+         VALUES (?, ?, ?, ?, ?, ?, ?)`,
+        [product_id, title, type, category, price, image_url || null, extra_info || null],
+        (err) => {
+            if (err) return res.status(500).send(err);
+            res.json({ message: "Product added", product_id });
+        }
+    );
+});
+ 
+// PUT — update an existing product
+app.put("/products/:id", (req, res) => {
+    const { title, type, category, price, image_url, extra_info } = req.body;
+ 
+    db.query(
+        `UPDATE products SET title=?, type=?, category=?, price=?, image_url=?, extra_info=?
+         WHERE product_id=?`,
+        [title, type, category, price, image_url || null, extra_info || null, req.params.id],
+        (err) => {
+            if (err) return res.status(500).send(err);
+            res.send("Product updated");
+        }
+    );
+});
+ 
+// DELETE — remove a product
+app.delete("/products/:id", (req, res) => {
+    db.query(
+        "DELETE FROM products WHERE product_id=?",
+        [req.params.id],
+        (err) => {
+            if (err) return res.status(500).send(err);
+            res.send("Product deleted");
+        }
+    );
+});
+ 
+ 
+// ════════════════════════════════════════════════════════════════════════════
+//  CART
+// ════════════════════════════════════════════════════════════════════════════
+ 
+// GET all cart items
 app.get("/cart", (req, res) => {
     db.query("SELECT * FROM cart", (err, results) => {
-        if (err) res.status(500).send(err);
-        else res.json(results);
+        if (err) return res.status(500).send(err);
+        res.json(results);
     });
 });
-
-//add to cart
+ 
+// POST — add a product to the cart
 app.post("/cart", (req, res) => {
-    const { productId } = req.body;
-
+    const { product_id, description, category, unit, price, member_id } = req.body;
+ 
+    if (!product_id || !description || !category || !unit || !price) {
+        return res.status(400).send("Missing required fields.");
+    }
+ 
     db.query(
-        "INSERT INTO cart (product_id, description, category, unit, price) VALUES (?, ?, ?, ?, ?)",
-        [productId, "Item", "Category", "Each", 0],
-        (err) => {
-            if (err) res.status(500).send(err);
-            else res.send("Added to cart");
+        `INSERT INTO cart (member_id, product_id, description, category, unit, price)
+         VALUES (?, ?, ?, ?, ?, ?)`,
+        [member_id || null, product_id, description, category, unit, price],
+        (err, result) => {
+            if (err) return res.status(500).send(err);
+            res.json({ message: "Added to cart", cart_id: result.insertId });
         }
     );
 });
-
-//for creating a user
-app.post("/users", (req, res) => {
-    const { username, password } = req.body;
-    res.send("User created");
+ 
+// DELETE — remove a single item from the cart
+app.delete("/cart/:id", (req, res) => {
+    db.query(
+        "DELETE FROM cart WHERE cart_id=?",
+        [req.params.id],
+        (err) => {
+            if (err) return res.status(500).send(err);
+            res.send("Item removed from cart");
+        }
+    );
 });
-
-//subscriptions
+ 
+ 
+// ════════════════════════════════════════════════════════════════════════════
+//  MEMBERS (Subscribe / Sign Up)
+// ════════════════════════════════════════════════════════════════════════════
+ 
+// GET all members
+app.get("/members", (req, res) => {
+    db.query("SELECT * FROM members", (err, results) => {
+        if (err) return res.status(500).send(err);
+        res.json(results);
+    });
+});
+ 
+// POST — register a new member (full subscribe.html form)
 app.post("/subscribe", (req, res) => {
-    const { email } = req.body;
-
+    const { full_name, age, email, address, phone } = req.body;
+ 
+    if (!full_name || !age || !email || !address) {
+        return res.status(400).send("Missing required fields.");
+    }
+ 
     db.query(
-        "INSERT INTO members (full_name, age, email, address) VALUES (?, ?, ?, ?)",
-        ["Subscriber", 18, email, "N/A"],
-        (err) => {
-            if (err) res.status(500).send(err);
-            else res.send("Subscribed");
+        `INSERT INTO members (full_name, age, email, address, phone)
+         VALUES (?, ?, ?, ?, ?)`,
+        [full_name, age, email, address, phone || null],
+        (err, result) => {
+            if (err) return res.status(500).send(err);
+            res.json({ message: "Subscribed successfully", member_id: result.insertId });
         }
     );
-
 });
-
-//starting the server
+ 
+ 
+// ── Start server ─────────────────────────────────────────────────────────────
 app.listen(3000, () => console.log("Server running on http://localhost:3000"));
