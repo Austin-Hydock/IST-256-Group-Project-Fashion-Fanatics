@@ -1,12 +1,10 @@
 $(document).ready(function () {
-
-    //login stuff
+ 
+    // ── Login ────────────────────────────────────────────────────────────────
     $("#loginBtn").click(function () {
-
-        let username = $("#username").val();
-        let password = $("#password").val();
-
-        // Simple admin check
+        const username = $("#username").val();
+        const password = $("#password").val();
+ 
         if (username === "admin" && password === "1234") {
             $("#loginSection").hide();
             $("#adminSection").show();
@@ -15,10 +13,10 @@ $(document).ready(function () {
             alert("Invalid login");
         }
     });
-
+ 
 });
-
-//loading articles from server
+ 
+// ── Load articles from server ────────────────────────────────────────────────
 function loadArticles() {
     $.ajax({
         url: "http://localhost:3000/articles",
@@ -31,34 +29,39 @@ function loadArticles() {
         }
     });
 }
-
-//displaying articles on page
+ 
+// ── Display articles on page ─────────────────────────────────────────────────
 function displayArticles(articles) {
     $("#articlesList").empty();
-
+ 
+    if (articles.length === 0) {
+        $("#articlesList").append("<p>No articles found.</p>");
+        return;
+    }
+ 
     articles.forEach(function (article) {
         let html = `
             <section>
                 <h4>${article.title}</h4>
-                <p><strong>Author:</strong> ${article.author}</p>
+                <p><strong>Author ID:</strong> ${article.author_id}</p>
                 <p><strong>Category:</strong> ${article.category}</p>
-                <p><strong>Status:</strong> ${article.status}</p>
-                <p><strong>Summary:</strong><br>${article.summary}</p>
-
-                <button onclick="approveArticle(${article.id})">Approve</button>
-                <button onclick="rejectArticle(${article.id})">Reject</button>
+                <p><strong>Status:</strong> ${article.review_status}</p>
+                <p><strong>Publication Date:</strong> ${article.pub_date}</p>
+                <p><strong>Editorial Notes:</strong><br>${article.editorial_notes || "None"}</p>
+                <button class="approve-btn" onclick="approveArticle(${article.article_id})">Approve</button>
+                <button class="reject-btn"  onclick="rejectArticle(${article.article_id})">Reject</button>
             </section>
             <hr>
         `;
         $("#articlesList").append(html);
     });
 }
-
-//approve article
+ 
+// ── Approve article (PUT — matches server.js) ────────────────────────────────
 function approveArticle(id) {
     $.ajax({
         url: `http://localhost:3000/articles/${id}/approve`,
-        method: "POST",
+        method: "PUT",                          // was POST — fixed to PUT
         success: function () {
             loadArticles();
         },
@@ -67,12 +70,12 @@ function approveArticle(id) {
         }
     });
 }
-
-//reject article
+ 
+// ── Reject article (PUT — matches server.js) ─────────────────────────────────
 function rejectArticle(id) {
     $.ajax({
         url: `http://localhost:3000/articles/${id}/reject`,
-        method: "POST",
+        method: "PUT",                          // was POST — fixed to PUT
         success: function () {
             loadArticles();
         },
