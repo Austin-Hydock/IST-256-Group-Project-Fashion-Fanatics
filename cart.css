@@ -1,136 +1,267 @@
-
-body {
-    font-family: Arial, sans-serif;
+:root {
+    --bg-color: #f9f6f1;
+    --text-dark: #1a1a1a;
+    --text-mid: #4a4a4a;
+    --text-light: #888;
+    --accent: #b89a5a;
+    --accent-hover: #9a7e3f;
+    --card-bg: #ffffff;
+    --border: #e0d8cc;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    --font-display: Georgia, 'Times New Roman', serif;
+    --font-body: 'Helvetica Neue', Arial, sans-serif;
+}
+ 
+/* ---- Reset & Base ---- */
+*, *::before, *::after {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
 }
-
-
-body > * {
+ 
+body {
+    background-color: var(--bg-color);
+    color: var(--text-dark);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.7;
+    min-height: 100vh;
+    padding-bottom: 64px;
+}
+ 
+/* ---- Navigation ---- */
+nav {
+    background-color: var(--text-dark);
+    padding: 14px 40px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: 0.1em;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+ 
+nav a {
+    color: #c8b98a;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+ 
+nav a:hover {
+    color: #ffffff;
+}
+ 
+/* ---- Page Heading ---- */
+h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3.6rem);
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dark);
+    padding: 48px 20px 8px;
+}
+ 
+h1::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 1px;
+    background-color: var(--accent);
+    margin: 12px auto 0;
+}
+ 
+/* ---- Section Headings ---- */
+h2 {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-mid);
+    margin: 36px 10% 16px;
+}
+ 
+/* ---- Page Content Margins ---- */
+body > *:not(nav):not(h1) {
     margin-left: 10%;
     margin-right: 10%;
 }
-
-
-nav {
-    background-color: #333;
-    padding: 10px;
-    color: white;
+ 
+/* ---- Search Bar ---- */
+#searchInput {
+    padding: 9px 12px;
+    border: 1px solid var(--border);
+    background-color: var(--card-bg);
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--text-dark);
+    outline: none;
+    width: 260px;
+    transition: border-color 0.2s ease;
+    margin-right: 6px;
 }
-
-nav a {
-    color: white;
-    text-decoration: none;
-    padding: 5px 10px;
+ 
+#searchInput:focus {
+    border-color: var(--accent);
 }
-
-nav a:hover {
-    background-color: #555;
+ 
+#searchBtn {
+    background-color: var(--accent);
+    color: #ffffff;
+    margin-top: 0;
 }
-
-
-h1 {
-    margin-top: 20px;
-    color: #333;
+ 
+#searchBtn:hover {
+    background-color: var(--accent-hover);
 }
-
-h2 {
-    margin-top: 20px;
-    color: #444;
-}
-
-
+ 
+/* ---- Add Product Form ---- */
 #productForm {
-    background-color: #ffffff;
-    padding: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    padding: 28px 32px;
     max-width: 500px;
+    margin-bottom: 36px;
 }
-
+ 
 #productForm label {
-    font-weight: bold;
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-mid);
+    margin-bottom: 4px;
+    margin-top: 14px;
 }
-
+ 
 #productForm input[type="text"],
 #productForm input[type="number"] {
     width: 100%;
-    padding: 6px;
-    margin-top: 4px;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 3px;
+    padding: 9px 12px;
+    border: 1px solid var(--border);
+    background-color: var(--bg-color);
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--text-dark);
+    outline: none;
+    transition: border-color 0.2s ease;
+    margin-bottom: 4px;
 }
-
-
-#searchInput {
-    padding: 6px;
-    width: 250px;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    margin-right: 5px;
+ 
+#productForm input:focus {
+    border-color: var(--accent);
 }
-
-/* Buttons */
+ 
+/* ---- Buttons ---- */
 button {
-    padding: 6px 12px;
-    background-color: #007bff;
-    color: white;
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 9px 22px;
     border: none;
-    border-radius: 3px;
     cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-top: 16px;
 }
-
-button:hover {
-    background-color: #0056b3;
+ 
+#productForm button[type="submit"] {
+    background-color: var(--text-dark);
+    color: #ffffff;
+    width: 100%;
+    margin-top: 20px;
 }
-
-
+ 
+#productForm button[type="submit"]:hover {
+    background-color: var(--accent);
+}
+ 
+#sendDataBtn {
+    background-color: var(--accent);
+    color: #ffffff;
+    margin-bottom: 30px;
+    margin-top: 16px;
+}
+ 
+#sendDataBtn:hover {
+    background-color: var(--accent-hover);
+}
+ 
+/* ---- Tables ---- */
 table {
     width: 100%;
     border-collapse: collapse;
-    background-color: #ffffff;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    font-size: 14px;
+    margin-bottom: 24px;
 }
-
-th, td {
-    padding: 8px;
+ 
+th {
+    background-color: var(--text-dark);
+    color: #c8b98a;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 12px 14px;
     text-align: left;
 }
-
-th {
-    background-color: #007bff;
-    color: white;
+ 
+td {
+    padding: 10px 14px;
+    color: var(--text-mid);
+    border-bottom: 1px solid var(--border);
 }
-
-tr:nth-child(even) {
-    background-color: #f9f9f9;
+ 
+tr:last-child td {
+    border-bottom: none;
 }
-
-
-#sendDataBtn {
-    margin-bottom: 30px;
+ 
+tr:nth-child(even) td {
+    background-color: #faf8f4;
 }
-
-/* Simple responsiveness */
+ 
+/* ---- Responsive ---- */
 @media (max-width: 600px) {
-
-    body > * {
+    body > *:not(nav):not(h1) {
         margin-left: 5%;
         margin-right: 5%;
     }
-
+ 
+    h2 {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+ 
+    nav {
+        padding: 12px 20px;
+    }
+ 
+    h1 {
+        font-size: 2rem;
+        padding: 32px 16px 8px;
+    }
+ 
     #productForm {
         width: 100%;
+        padding: 20px 16px;
     }
-
+ 
     #searchInput {
         width: 100%;
         margin-bottom: 8px;
+        margin-right: 0;
     }
-
+ 
     table, th, td {
-        font-size: 14px;
+        font-size: 12px;
     }
 }
