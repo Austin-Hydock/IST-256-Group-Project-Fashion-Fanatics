@@ -1,11 +1,11 @@
 {
-  "name": "js",
+  "name": "fashion-fanatics",
   "version": "1.0.0",
-  "description": "",
-  "main": "approval.js",
+  "description": "Fashion Fanatics Magazine – Node.js + MySQL backend",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
@@ -13,6 +13,7 @@
   "type": "commonjs",
   "dependencies": {
     "cors": "^2.8.6",
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "mysql2": "^3.9.7"
   }
 }
