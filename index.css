@@ -1,40 +1,130 @@
-/* Basic styling for the Fanatics page */
+ 
+/* ---- CSS Variables ---- */
+:root {
+    --bg-color: #f9f6f1;
+    --text-dark: #1a1a1a;
+    --text-mid: #4a4a4a;
+    --accent: #b89a5a;
+    --accent-hover: #9a7e3f;
+    --card-bg: #ffffff;
+    --border: #e0d8cc;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    --font-display: Georgia, 'Times New Roman', serif;
+    --font-body: 'Helvetica Neue', Arial, sans-serif;
+}
+ 
+/* ---- Reset & Base ---- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+ 
 body {
-    background-color: #f8f9fa; /* light gray background */
+    background-color: var(--bg-color);
+    color: var(--text-dark);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.7;
+    min-height: 100vh;
     text-align: center;
-    font-family: Arial, sans-serif;
-    padding: 30px;
 }
-
-/* Title styling */
-.title {
-    color: #0d6efd; /* Bootstrap primary blue */
-    font-size: 2.5em;
-    margin-bottom: 20px;
+ 
+/* ---- Navigation (Bootstrap navbar override) ---- */
+.navbar {
+    background-color: var(--text-dark) !important;
+    padding: 14px 40px;
+    letter-spacing: 0.1em;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
 }
-
-/* Make sure images are nicely displayed */
-.image-container img {
-    width: 250px;
-    height: auto;
-    border-radius: 8px;
-    border: 2px solid #dee2e6;
-}
-
-/* Button area */
-.button-container {
-    margin-top: 25px;
-}
-
-/* Use Bootstrap’s basic button style, but add a custom touch */
-.signup-button {
-    background-color: #0d6efd;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
+ 
+.navbar-brand,
+.nav-link {
+    color: #c8b98a !important;
     text-decoration: none;
+    transition: color 0.2s ease;
 }
-
+ 
+.navbar-brand:hover,
+.nav-link:hover {
+    color: #ffffff !important;
+}
+ 
+/* ---- Main Heading ---- */
+.title {
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dark);
+    padding: 48px 20px 8px;
+}
+ 
+.title::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 1px;
+    background-color: var(--accent);
+    margin: 12px auto 0;
+}
+ 
+/* ---- Hero Image ---- */
+.image-container {
+    margin: 36px auto;
+}
+ 
+.image-container img {
+    width: 320px;
+    height: auto;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    display: block;
+    margin: 0 auto;
+}
+ 
+/* ---- Sign-Up Button ---- */
+.button-container {
+    margin-top: 28px;
+    padding-bottom: 64px;
+}
+ 
+.signup-button {
+    background-color: var(--text-dark);
+    color: #ffffff;
+    padding: 11px 32px;
+    border: none;
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+    border-radius: 0;
+    display: inline-block;
+}
+ 
 .signup-button:hover {
-    background-color: #0b5ed7; /* darker shade on hover */
+    background-color: var(--accent);
+    color: #ffffff;
+}
+ 
+/* ---- Responsive ---- */
+@media (max-width: 640px) {
+    .navbar {
+        padding: 12px 20px;
+    }
+ 
+    .title {
+        font-size: 2.2rem;
+        padding: 32px 16px 8px;
+    }
+ 
+    .image-container img {
+        width: 90%;
+    }
 }
